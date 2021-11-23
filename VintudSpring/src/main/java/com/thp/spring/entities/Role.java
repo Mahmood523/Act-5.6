@@ -10,36 +10,32 @@ import javax.persistence.Id;
 @Entity
 public class Role implements Serializable {
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int role_id ;
-	
-	private String nom ;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long roleId;
+	private String nom;
+	private static final long serialVersionUID = 1L;
 
 	public Role() {
 		super();
 	}
-	
-	
 
 	public Role(String nom) {
 		super();
 		this.nom = nom;
 	}
 
-
-
-	public Role(int role_id, String nom) {
+	public Role(Long roleId, String nom) {
 		super();
-		this.role_id = role_id;
+		this.roleId = roleId;
 		this.nom = nom;
 	}
 
-	public int getRole_id() {
-		return role_id;
+	public Long getRoleId() {
+		return roleId;
 	}
 
-	public void setRole_id(int role_id) {
-		this.role_id = role_id;
+	public void setRoleId(Long roleId) {
+		this.roleId = roleId;
 	}
 
 	public String getNom() {
@@ -49,7 +45,5 @@ public class Role implements Serializable {
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
-	
-	
 
 }

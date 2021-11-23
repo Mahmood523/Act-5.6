@@ -1,25 +1,19 @@
 package com.thp.spring.dtos;
 
-
 public class RoleDto {
-	
-	
-	private int roleId ;
-	
-	private String nom ;
+
+	private int roleId;
+
+	private String nom;
 
 	public RoleDto() {
 		super();
 	}
-	
-	
 
 	public RoleDto(String nom) {
 		super();
 		this.nom = nom;
 	}
-
-
 
 	public RoleDto(int roleId, String nom) {
 		super();
@@ -42,7 +36,5 @@ public class RoleDto {
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
-	
-	
 
 }

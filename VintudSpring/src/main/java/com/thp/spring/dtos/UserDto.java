@@ -1,64 +1,53 @@
 package com.thp.spring.dtos;
 
-
-
-
 import com.thp.spring.entities.Role;
 
 public class UserDto {
-	
-		
-		private int userId ;
-		private String firstname ;
-		private String name ;
-		private String pseudo  ;
-		private String mail ;
-		private String userPassword  ;
-		private String phone ;
-		private String address  ;
-		
-		private Role role;
-		
-		public UserDto() {
-			super();
-		}
-		
-		
-		
-		
+
+	private int userId;
+	private String firstname;
+	private String name;
+	private String pseudo;
+	private String mail;
+	private String userPassword;
+	private String phone;
+	private String address;
+
+	private Role role;
+
+	public UserDto() {
+		super();
+	}
+
 	public UserDto(String firstname, String name, String pseudo, String mail, String userPassword, String phone,
-				String address, Role role) {
-			super();
-			this.firstname = firstname;
-			this.name = name;
-			this.pseudo = pseudo;
-			this.mail = mail;
-			this.userPassword = userPassword;
-			this.phone = phone;
-			this.address = address;
-			this.role = role;
-		}
+			String address, Role role) {
+		super();
+		this.firstname = firstname;
+		this.name = name;
+		this.pseudo = pseudo;
+		this.mail = mail;
+		this.userPassword = userPassword;
+		this.phone = phone;
+		this.address = address;
+		this.role = role;
+	}
 
+	public UserDto(int userId, String firstname, String name, String pseudo, String mail, String userPpassword,
+			String phone, String address, Role role) {
+		super();
+		this.userId = userId;
+		this.firstname = firstname;
+		this.name = name;
+		this.pseudo = pseudo;
+		this.mail = mail;
+		this.userPassword = userPassword;
+		this.phone = phone;
+		this.address = address;
+		this.role = role;
+	}
 
-
-
-	public UserDto(int userId, String firstname, String name, String pseudo, String mail, String userPpassword, String phone,
-				String address, Role role) {
-			super();
-			this.userId = userId;
-			this.firstname = firstname;
-			this.name = name;
-			this.pseudo = pseudo;
-			this.mail = mail;
-			this.userPassword = userPassword;
-			this.phone = phone;
-			this.address = address;
-			this.role = role;
-		}
-
-
-	public UserDto(int userId, String firstname, String name, String pseudo, String mail, String userPassword, String phone,
-			String address) {
+	public UserDto(int userId, String firstname, String name, String pseudo, String mail, String userPassword,
+			String phone, String address) {
 		super();
 		this.userId = userId;
 		this.firstname = firstname;
@@ -134,21 +123,12 @@ public class UserDto {
 		this.address = address;
 	}
 
-
-
-
 	public Role getRole() {
 		return role;
 	}
 
-
-
-
 	public void setRole(Role role) {
 		this.role = role;
 	}
-	
-	
-		
 
 }

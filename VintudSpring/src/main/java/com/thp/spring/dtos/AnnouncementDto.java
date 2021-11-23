@@ -20,7 +20,6 @@ public class AnnouncementDto {
 	private boolean is_available;
 	private int view_number;
 	private String localisation;
-
 	private User user;
 
 	public AnnouncementDto() {

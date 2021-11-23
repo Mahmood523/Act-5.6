@@ -11,69 +11,62 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.thp.spring.dtos.CategoryDto;
 import com.thp.spring.entities.Category;
-import com.thp.spring.mapper.EntityDtoMapper;
 import com.thp.spring.repositories.CategoryRepository;
 import com.thp.spring.services.CategoryService;
 
 @Service
 @Transactional
 public class CategoryServiceImpl implements CategoryService {
-	
+
 	@Autowired
 	CategoryRepository categoryRepository;
-	
-	@Autowired
-	private EntityDtoMapper entityDtoMapper;
+
+	private ModelMapper modelMapper = new ModelMapper();
 
 	@Override
 	public CategoryDto addCategory(CategoryDto categoryDto) {
-		
-		Category category =entityDtoMapper.categoryDtoToEntity(categoryDto);
+
+		Category category = modelMapper.map(categoryDto, Category.class);
 		Category categoryToAdd = categoryRepository.save(category);
-		CategoryDto categoryDtoToAdd = entityDtoMapper.categoryEntityToDto(categoryToAdd);
-		
-		return categoryDtoToAdd ;
+		CategoryDto categoryDtoToAdd = modelMapper.map(categoryToAdd, CategoryDto.class);
+
+		return categoryDtoToAdd;
 	}
 
 	@Override
 	public CategoryDto getCategoryById(Long id) {
-		Optional<Category> categoryRendred =  categoryRepository.findById(id) ;
-		CategoryDto categoryDtoRendred = entityDtoMapper.categoryEntityToDto(categoryRendred.get()) ;
-		
+		Optional<Category> categoryRendred = categoryRepository.findById(id);
+		CategoryDto categoryDtoRendred = modelMapper.map(categoryRendred.get(), CategoryDto.class);
+
 		return categoryDtoRendred;
 
-		
 	}
 
 	@Override
 	public CategoryDto deleteCategroyById(Long id) {
-        CategoryDto categoryDtoToDelete = this.getCategoryById(id);
-        categoryRepository.deleteById(id);
-        
-        
+		CategoryDto categoryDtoToDelete = this.getCategoryById(id);
+		categoryRepository.deleteById(id);
+
 		return categoryDtoToDelete;
 	}
 
 	@Override
-	public CategoryDto updateById(Long id,CategoryDto categoryDto) {
- 
-		//Optional<Category> categoryRendred =categoryRepository.findById(id);
-		
-		categoryDto.setCategoryId(id);;
-		
-		
-		return addCategory(categoryDto) ;
+	public CategoryDto updateById(Long id, CategoryDto categoryDto) {
+
+		// Optional<Category> categoryRendred =categoryRepository.findById(id);
+
+		categoryDto.setCategoryId(id);
+
+		return addCategory(categoryDto);
 	}
 
 	@Override
 	public List<CategoryDto> getAllCategories() {
-		List<Category> categories=categoryRepository.findAll();
-		List<CategoryDto> categoriesDto=new ArrayList<CategoryDto>();
-		for (int i=0; i< categories.size();i++) 
-		{
-			categoriesDto.add(entityDtoMapper.categoryEntityToDto(categories.get(i)));
-	
-			
+		List<Category> categories = categoryRepository.findAll();
+		List<CategoryDto> categoriesDto = new ArrayList<CategoryDto>();
+		for (int i = 0; i < categories.size(); i++) {
+			categoriesDto.add(modelMapper.map(categories.get(i),CategoryDto.class));
+
 		}
 
 		return categoriesDto;

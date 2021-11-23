@@ -5,9 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import com.thp.spring.entities.Recherche;
 
-
 @Repository
-public interface RechercheRepository extends JpaRepository<Recherche, Long>{
-	
+public interface RechercheRepository extends JpaRepository<Recherche, Long> {
 
 }

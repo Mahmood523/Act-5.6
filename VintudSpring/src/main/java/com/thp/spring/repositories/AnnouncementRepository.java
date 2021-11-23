@@ -5,9 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import com.thp.spring.entities.Announcement;
 
-
 @Repository
-public interface AnnouncementRepository extends JpaRepository <Announcement,Long>{
-	
+public interface AnnouncementRepository extends JpaRepository<Announcement, Long> {
 
 }

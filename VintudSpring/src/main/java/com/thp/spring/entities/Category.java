@@ -6,21 +6,18 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
 @Entity
 public class Category implements Serializable {
-	
-	private static final long serialVersionUID = 1L;
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Long categoryId ;
-	
-	private String name  ;
-	private String description  ;
-	
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long categoryId;
+
+	private String name;
+	private String description;
+	private static final long serialVersionUID = 1L;
+
 	public Category() {
 		super();
 	}
@@ -55,7 +52,5 @@ public class Category implements Serializable {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
-	
 
 }

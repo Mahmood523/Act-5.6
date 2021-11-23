@@ -2,6 +2,7 @@ package com.thp.spring.Controllers;
 
 import java.util.List;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.http.HttpStatus;
@@ -17,7 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.thp.spring.dtos.CategoryDto;
-import com.thp.spring.mapper.EntityDtoMapper;
 import com.thp.spring.services.CategoryService;
 
 @RestController
@@ -29,8 +29,7 @@ public class CategoryController {
 	@Autowired
 	private CategoryService categoryService;
 
-	@Autowired
-	EntityDtoMapper entityDtoMapper;
+	
 
 	@GetMapping(value = "/listeCategories")
 	public List<CategoryDto> getAllCategories() {
@@ -74,9 +73,9 @@ public class CategoryController {
 	}
 
 	@PutMapping(value = "/updateCategory/{id}")
-	public CategoryDto updateCategoryById(@PathVariable Long id,@RequestBody CategoryDto categoryDto) {
+	public CategoryDto updateCategoryById(@PathVariable Long id, @RequestBody CategoryDto categoryDto) {
 		try {
-			return categoryService.updateById(id,categoryDto);
+			return categoryService.updateById(id, categoryDto);
 		} catch (Exception E) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, E.getMessage());
 		}

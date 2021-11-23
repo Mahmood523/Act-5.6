@@ -9,16 +9,17 @@ import org.springframework.transaction.annotation.Transactional;
 import com.thp.spring.dtos.AnnouncementDto;
 import com.thp.spring.repositories.AnnouncementRepository;
 import com.thp.spring.services.AnnouncementService;
+
 @Service
 @Transactional
 public class AnnouncementServiceImpl implements AnnouncementService {
-	
+
 	@Autowired
 	AnnouncementRepository announcementRepository;
 
 	@Override
 	public ArrayList<AnnouncementDto> findAnnouncementByNameCatgeryAndOrPrice() {
-         
+
 		return null;
 	}
 

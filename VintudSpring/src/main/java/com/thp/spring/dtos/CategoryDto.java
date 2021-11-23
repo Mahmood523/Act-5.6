@@ -1,15 +1,12 @@
 package com.thp.spring.dtos;
 
-
-
 public class CategoryDto {
 
-	
-	private Long categoryId ;
-	
-	private String name  ;
-	private String description  ;
-	
+	private Long categoryId;
+
+	private String name;
+	private String description;
+
 	public CategoryDto() {
 		super();
 	}
@@ -45,6 +42,4 @@ public class CategoryDto {
 		this.description = description;
 	}
 
-	
-	
 }
