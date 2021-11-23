@@ -26,9 +26,8 @@ public class CategoryServiceImpl implements CategoryService {
 	@Override
 	public CategoryDto addCategory(CategoryDto categoryDto) {
 
-		Category category = modelMapper.map(categoryDto, Category.class);
-		Category categoryToAdd = categoryRepository.save(category);
-		CategoryDto categoryDtoToAdd = modelMapper.map(categoryToAdd, CategoryDto.class);
+		
+		CategoryDto categoryDtoToAdd = modelMapper.map(categoryRepository.save(modelMapper.map(categoryDto, Category.class)), CategoryDto.class);
 
 		return categoryDtoToAdd;
 	}
@@ -36,9 +35,12 @@ public class CategoryServiceImpl implements CategoryService {
 	@Override
 	public CategoryDto getCategoryById(Long id) {
 		Optional<Category> categoryRendred = categoryRepository.findById(id);
-		CategoryDto categoryDtoRendred = modelMapper.map(categoryRendred.get(), CategoryDto.class);
+		if (categoryRendred.isPresent()) {
+			return modelMapper.map(categoryRendred.get(), CategoryDto.class);
 
-		return categoryDtoRendred;
+		}
+
+		return null;
 
 	}
 
@@ -51,11 +53,7 @@ public class CategoryServiceImpl implements CategoryService {
 	}
 
 	@Override
-	public CategoryDto updateById(Long id, CategoryDto categoryDto) {
-
-		// Optional<Category> categoryRendred =categoryRepository.findById(id);
-
-		categoryDto.setCategoryId(id);
+	public CategoryDto updateById(CategoryDto categoryDto) {
 
 		return addCategory(categoryDto);
 	}
@@ -63,10 +61,12 @@ public class CategoryServiceImpl implements CategoryService {
 	@Override
 	public List<CategoryDto> getAllCategories() {
 		List<Category> categories = categoryRepository.findAll();
-		List<CategoryDto> categoriesDto = new ArrayList<CategoryDto>();
-		for (int i = 0; i < categories.size(); i++) {
-			categoriesDto.add(modelMapper.map(categories.get(i),CategoryDto.class));
+		List<CategoryDto> categoriesDto = new ArrayList<>();
+		if ( !categories.isEmpty()) {
+			for (int i = 0; i < categories.size(); i++) {
+				categoriesDto.add(modelMapper.map(categories.get(i), CategoryDto.class));
 
+			}
 		}
 
 		return categoriesDto;

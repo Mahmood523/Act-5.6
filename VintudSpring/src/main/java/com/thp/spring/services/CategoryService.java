@@ -12,7 +12,7 @@ public interface CategoryService {
 
 	public CategoryDto deleteCategroyById(Long id);
 
-	public CategoryDto updateById(Long id, CategoryDto categoryDto);
+	public CategoryDto updateById(CategoryDto categoryDto);
 
 	public List<CategoryDto> getAllCategories();
 
