@@ -35,7 +35,7 @@ class VintudSpringApplicationTests {
 			      .contentType(MediaType.APPLICATION_JSON)
 			      .accept(MediaType.APPLICATION_JSON))
 			      .andExpect(status().isCreated())
-			      .andExpect(MockMvcResultMatchers.jsonPath("$.categoryId").exists());
+			      .andExpect(MockMvcResultMatchers.jsonPath("$.[0].categoryId").exists());
 	}
 
 	
@@ -53,11 +53,11 @@ class VintudSpringApplicationTests {
 	@Test
 	public void getCategoryById() throws Exception {
 		mockMvc.perform( MockMvcRequestBuilders
-			      .get("/gestionnaireCategories/findCategory/{id}", 1)
+			      .get("/gestionnaireCategories/findCategory/{id}", 11)
 			      .accept(MediaType.APPLICATION_JSON))
 			      .andDo(print())
 			      .andExpect(status().isOk())
-			      .andExpect(MockMvcResultMatchers.jsonPath("$.categoryId").value(1));
+			      .andExpect(MockMvcResultMatchers.jsonPath("$.categoryId").value(11));
 	}
 	
 	
@@ -68,27 +68,28 @@ class VintudSpringApplicationTests {
 			      .accept(MediaType.APPLICATION_JSON))
 			      .andDo(print())
 			      .andExpect(status().isOk())
-			      .andExpect(MockMvcResultMatchers.jsonPath("$.categories").exists())
-			      .andExpect(MockMvcResultMatchers.jsonPath("$.categories[*].categoryId").isNotEmpty());
+			      .andExpect(MockMvcResultMatchers.jsonPath("$.[*]").exists())
+			      .andExpect(MockMvcResultMatchers.jsonPath("$.[*].categoryId").exists());
 	}
 	
 	
 	@Test
 	public void updateCategoryById() throws Exception {
 		mockMvc.perform( MockMvcRequestBuilders
-			      .put("/gestionnaireCategories/updateCategory/{id}", 2)
-			      .content(asJsonString(new CategoryDto(2L, "Veste", "m9at3a")))
+			      .put("/gestionnaireCategories/updateCategory/{id}", 24)
+			      .content(asJsonString(new CategoryDto(24L, "Veste", "m9at3a")))
 			      .contentType(MediaType.APPLICATION_JSON)
 			      .accept(MediaType.APPLICATION_JSON))
 			      .andExpect(status().isOk())
 			      .andExpect(MockMvcResultMatchers.jsonPath("$.name").value("Veste"))
-			      .andExpect(MockMvcResultMatchers.jsonPath("$.description").value("m9at3a"));
+			      .andExpect(MockMvcResultMatchers.jsonPath("$.description").value("m9at3a"))
+			      .andExpect(MockMvcResultMatchers.jsonPath("$.categoryId").value("24")	  );
 	}
 	
 	
 	@Test
 	public void deleteCategory() throws Exception {
-		mockMvc.perform( MockMvcRequestBuilders.delete("/gestionnaireCategories/deleteCategory/{id}", 4) )
+		mockMvc.perform( MockMvcRequestBuilders.delete("/gestionnaireCategories/deleteCategory/{id}", 12) )
         .andExpect(status().isAccepted());
 	}
 }
