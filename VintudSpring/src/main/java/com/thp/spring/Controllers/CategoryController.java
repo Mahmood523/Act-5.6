@@ -48,7 +48,7 @@ public class CategoryController {
 
 	@PutMapping(value = "/updateCategory/{id}")
 	public CategoryDto updateCategoryById(@RequestBody CategoryDto categoryDto) {
-		return categoryService.updateById(categoryDto);
+		return categoryService.updateCategoryById(categoryDto);
 
 	}
 }

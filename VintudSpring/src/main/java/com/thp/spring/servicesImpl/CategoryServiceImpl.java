@@ -53,7 +53,7 @@ public class CategoryServiceImpl implements CategoryService {
 	}
 
 	@Override
-	public CategoryDto updateById(CategoryDto categoryDto) {
+	public CategoryDto updateCategoryById(CategoryDto categoryDto) {
 
 		return addCategory(categoryDto);
 	}

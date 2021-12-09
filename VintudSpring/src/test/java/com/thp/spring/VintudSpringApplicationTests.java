@@ -1,6 +1,7 @@
 package com.thp.spring;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import org.junit.jupiter.api.Test;
@@ -30,11 +31,9 @@ class VintudSpringApplicationTests {
 	public void aadCategory() throws Exception {
 
 		mockMvc.perform(MockMvcRequestBuilders.post("/gestionnaireCategories/addCategory")
-				.content(asJsonString(new CategoryDto(null, "Vest", "old")))
-				.contentType(MediaType.APPLICATION_JSON)
-				.accept(MediaType.APPLICATION_JSON))
-		        .andExpect(status().isOk())
-		    //  .andExpect(status().isCreated())
+				.content(asJsonString(new CategoryDto(null, "Vest", "old"))).contentType(MediaType.APPLICATION_JSON)
+				.accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk())
+				// .andExpect(status().isCreated())
 				.andExpect(MockMvcResultMatchers.jsonPath("$.categoryId").exists());
 	}
 
@@ -58,7 +57,8 @@ class VintudSpringApplicationTests {
 		mockMvc.perform(MockMvcRequestBuilders.get("/gestionnaireCategories/listeCategories")
 				.accept(MediaType.APPLICATION_JSON)).andDo(print()).andExpect(status().isOk())
 				.andExpect(MockMvcResultMatchers.jsonPath("$.[*]").exists())
-				.andExpect(MockMvcResultMatchers.jsonPath("$.[*].categoryId").exists());
+				.andExpect(MockMvcResultMatchers.jsonPath("$.[*].categoryId").exists())
+				.andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON));
 	}
 
 	@Test
@@ -75,6 +75,6 @@ class VintudSpringApplicationTests {
 	public void deleteCategory() throws Exception {
 		mockMvc.perform(MockMvcRequestBuilders.delete("/gestionnaireCategories/deleteCategory/{id}", 14))
 				.andExpect(status().isOk());
-			//	.andExpect(status().isAccepted());
+		// .andExpect(status().isAccepted());
 	}
 }
